@@ -51,9 +51,6 @@ public final class Productos {
         
         return (subtotal*0.12);
     }
-    public double baseImponible(double subtotal,double descuento){
-        return (subtotal-descuento);
-    }
     public double total(double subtotal,double iva){
 
         return (subtotal+iva);
@@ -72,15 +69,16 @@ public final class Productos {
         return acumCant2;
     }
     
-    public double descuentos(double subtotal) {
+    public double descuentos(double total) {
         if(acumalarArticulos()>3){
-            dsct10=(subtotal*0.1);
+            dsct10=(total*0.1);
         }
         if(acumalarArticulos2()>=2){
-            dsct25=(subtotal*0.25);
+            dsct25=(total*0.25);
         }
-        if(subtotal>25){
-            dsct5=(subtotal*0.05);
+        if(subtotal()>25){
+            dsct5=(total*0.05);
         }
         return (dsct10+dsct25+dsct5);
     }
+}
