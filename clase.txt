@@ -1,0 +1,86 @@
+public final class Productos {
+    
+    public static ArrayList <Productos> ArrayProductos = new  ArrayList();
+    private int cantidad;
+    private String descripcion;
+    private double precio;
+    private double valorTotal;
+    public double acumulador =0, dsct10,dsct25, dsct5;
+    public int acumCant =0,acumCant2 =0;
+    
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    public double subtotal(){
+        
+        for(int i=0; i<ArrayProductos.size(); i++){
+                acumulador = acumulador + (ArrayProductos.get(i).getCantidad()*ArrayProductos.get(i).getPrecio());
+        }
+        return acumulador;
+    }
+    
+    public double iva(double subtotal){
+        
+        return (subtotal*0.12);
+    }
+    public double baseImponible(double subtotal,double descuento){
+        return (subtotal-descuento);
+    }
+    public double total(double subtotal,double iva){
+
+        return (subtotal+iva);
+    }
+    
+    public int acumalarArticulos(){
+        for(int i=0; i<ArrayProductos.size(); i++){
+                acumCant = acumCant + (ArrayProductos.get(i).getCantidad());
+        }
+        return acumCant;
+    }
+    public int acumalarArticulos2(){
+        for(int i=0; i<ArrayProductos.size(); i++){
+                acumCant2 =(ArrayProductos.get(i).getCantidad());
+        }
+        return acumCant2;
+    }
+    
+    public double descuentos(double subtotal) {
+        if(acumalarArticulos()>3){
+            dsct10=(subtotal*0.1);
+        }
+        if(acumalarArticulos2()>=2){
+            dsct25=(subtotal*0.25);
+        }
+        if(subtotal>25){
+            dsct5=(subtotal*0.05);
+        }
+        return (dsct10+dsct25+dsct5);
+    }
